@@ -4,6 +4,8 @@ import sys
 
 from logged_library import printer
 
+THIS_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
+
 
 def config_logger(root_level, library_level):
     logger = logging.getLogger()
@@ -15,7 +17,7 @@ def config_logger(root_level, library_level):
     logger.addHandler(handler)
 
     # Configure root file logger
-    log_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "file.log")
+    log_filepath = os.path.join(THIS_DIR_PATH, "file.log")
     handler = logging.FileHandler(log_filepath, mode='a')
     formatter = logging.Formatter('%(asctime)s %(levelname)-s:%(module)-s:%(funcName)-s: %(message)s')
     handler.setFormatter(formatter)
