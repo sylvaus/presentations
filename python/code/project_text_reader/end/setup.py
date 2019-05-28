@@ -21,5 +21,11 @@ setup(
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4',
     install_requires=['pyttsx3'],
     tests_require=['pytest'],
-    entry_points={'console_scripts': ['read_text=text_reader.entry_point:main', ], },
+    entry_points={
+        'console_scripts':
+            [
+                'read_text_class=text_reader.entry_point:main_class'
+                , 'read_text_func=text_reader.entry_point:main_func'
+            ],
+    },
 )

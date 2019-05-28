@@ -10,5 +10,10 @@ For example, the "text pause: 5" would not be read but a 5 seconds would happen.
 ## Start Folder
 You will find in the start project a setup.py and a readme.md.
 The setup.py has already two dependencies in it:
- * pyttsx3: this 
- * pytest (for test only)
+ * pyttsx3: this library will be used to say the text out loud
+ * pytest for test only
+ 
+## End folder
+The end folder contains two project solutions:
+* The one with the _func ending using a functional approach
+* The one with the _class ending using an oriented object approach

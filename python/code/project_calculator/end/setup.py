@@ -10,17 +10,15 @@ def read_requirement(filepath):
 
 
 setup(
-    name="Text Reader Project",
+    name="Calculator Project",
     version='',
-    # Use this commented line to define your entry_point
-    # py_modules=["entry_point"],
+    py_modules=["entry_point"],
     packages=find_packages(exclude=['tests']),
     url='',
     description='',
     long_description=read_readme('readme.md'),
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4',
-    install_requires=['pyttsx3'],
+    install_requires=[],
     tests_require=['pytest'],
-    # Use this to register your entry point
-    # entry_points={'console_scripts': ['read_text=entry_point:main', ], },
+    entry_points={'gui_scripts': ['read_text=entry_point:main', ], },
 )

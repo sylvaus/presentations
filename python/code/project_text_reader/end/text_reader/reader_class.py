@@ -1,7 +1,7 @@
 from collections import OrderedDict
 from typing import Callable
 
-from text_reader.speaker import Speaker
+from text_reader.speaker_class import Speaker
 
 
 class Reader:
@@ -12,7 +12,7 @@ class Reader:
     def add_special_action(self, key: str, func: Callable[[str, Speaker], None]):
         self._special_actions[key] = func
 
-    def read(self, filepath: str):
+    def read_file(self, filepath: str):
         with open(filepath, "r") as text_to_read:
             for line in text_to_read:
                 self._handle_line(line)
