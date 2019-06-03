@@ -40,7 +40,7 @@ def exercise2(filepath, lines):
 if __name__ == '__main__':
     import os
     this_folder = os.path.dirname(os.path.abspath(__file__))
-    in_filepath = os.path.join(this_folder, "4_file.txt")
+    in_filepath = os.path.join(this_folder, "5_file.txt")
     out_filepath = os.path.join(this_folder, "4_file_out.txt")
     LINES = ["line 1", "line 2", "line 3", "line 4", "line 5"]
 
