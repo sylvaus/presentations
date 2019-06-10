@@ -17,10 +17,10 @@ var = my_list[-1] # This return the last element
 
 Elements can be added or remove from the list
 # Add one element
-my_list.add("new element")
+my_list.append("new element")
 
 # Add another list
-my_list.add(other_list)
+my_list.extend(other_list)
 
 # Remove one element by value
 my_list.remove("str")

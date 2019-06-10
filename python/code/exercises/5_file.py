@@ -3,10 +3,14 @@ Python offers an easy way to handle file
 Basic Syntax:
 for reading:
 f = open(filepath, "r")
-Get all the text:
-    f.read()
-Read line by line:
-    for line in f
+
+# Get all the text:
+f.read()
+
+# Read line by line:
+for line in f:
+    print(line)
+
 f.close()
 
 for writing:
