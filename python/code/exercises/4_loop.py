@@ -1,28 +1,21 @@
 """
-Python offers two keywords for looping
-while and for
-
-Syntax:
-for element in elements:
-    code
-
-while condition:
-    code
-
 Exercise 1:
-Write a function that prints all the element in the elements parameter
-
-Exercise 2:
-Write a function that print all the elements inferior to 10 in the given sorted list
+Fill exercise1 function to print all the element in the list of elements parameter element_list
 """
 
 
-def exercise1(elements):
+def exercise1(element_list):
     # Put your code here
     pass
 
 
-def exercise2(elements):
+"""
+Exercise 2:
+Fill exercise2 function to print all the elements inferior to 10 in the given sorted list sorted_list
+"""
+
+
+def exercise2(sorted_list):
     # Put your code here
     pass
 

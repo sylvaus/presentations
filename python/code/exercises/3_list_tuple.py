@@ -1,55 +1,4 @@
 """
-List and tuple are simples structure and are used everywhere in python
-
-A list as its name indicates is a list of elements.
-There are various ways to create a list:
-# Empty list
-my_list = list() using the list constructor
-my_list = []
-
-# With initial values
-my_list = [1, 34, 64, "str"]
-
-# Access element
-var = my_list[2] # The list is zero indexed and thus 64 would be returned
-# Negative index can be used to index element from the end
-var = my_list[-1] # This return the last element
-
-Elements can be added or remove from the list
-# Add one element
-my_list.append("new element")
-
-# Add another list
-my_list.extend(other_list)
-
-# Remove one element by value
-my_list.remove("str")
-
-# Remove one element by index
-delete my_list[2] # Remove the third element (The list is zero indexed)
-var = my_list.pop(2) # Remove the third element and returns it
-
-# Remove all elements
-my_list.clear()
-
-# Slicing: this refers to taking sub-section of the list
-# The syntax is:
-sub_list = my_list[start_index:end_index]
-or
-sub_list = my_list[start_index:end_index:step]
-# The start_index is the index of the first element to include in the sub_list
-# The end_index is the index of the first element to NOT include in the sub_list
-# The step is the number to add to the previous index to know which is the next index to add
-
-# if start_index is not given, its value will be 0
-# if end_index is not given, its value will be len(my_str)
-# if step is not given, its value will be 1
-
-A tuple has the same property as a list except for that a tuple cannot be modified: no value can be added or removed
-
-"""
-
-"""
 Exercise 1
 
 Given the my_list, print the sum of the first element and the last element of my-list
@@ -66,6 +15,8 @@ Exercise 2
 Given the my_list listing the 100 (0-99) first integers, 
 print the list of the 50 first even numbers and 
 print the list of the 50 first odd numbers
+
+Hint: use slicing
 """
 
 
