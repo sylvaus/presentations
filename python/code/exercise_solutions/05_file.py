@@ -30,7 +30,7 @@ if __name__ == '__main__':
     import os
 
     this_folder = os.path.dirname(os.path.abspath(__file__))
-    in_filepath = os.path.join(this_folder, "5_file.txt")
+    in_filepath = os.path.join(this_folder, "05_file.txt")
     out_filepath = os.path.join(this_folder, "4_file_out.txt")
     LINES = ["line 1\n", "line 2\n", "line 3\n", "line 4\n", "line 5"]
 

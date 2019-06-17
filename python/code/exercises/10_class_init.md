@@ -20,14 +20,14 @@ You may be wondering about the two new keywords `__init__` and self and the diff
 The `__init__` is the function being called when the object is constructed (e.g. when doing MyClass("a1"))
 and thus it is used to set the object attribute initial values
 
-The self keyword is referring to the object that is being created.
-In the previous example, self would refer to obj and thus,
+The self keyword is referring to the object that is being created.                             
+In the previous example, self would refer to obj and thus, 
 when doing "self.obj_attr = attribute" we set the attribute obj_attr of obj
 
 Now onto the difference between the attributes class_attr and obj_attr,
 as their name indicate one is a class attribute and one is an object attribute
 
-An object attribute is only attached to a single object which means
+An object attribute is only attached to a single object which means 
 that every time you call MyClass(attribute), will have its own independent attribute
 
 It is the opposite for class attributes, they are shared between the different object of the same class
@@ -51,7 +51,7 @@ MyClass.class_attr = "Modified class attribute"
 print(obj.class_attr, obj2.class_attr) # will print: Modified class attribute Modified class attribute -> The two objects were modified
 ```
 
-Now that we know how to add attributes to our class, let's add methods to our class.
+Now that we know how to add attributes to our class, let's add methods to our class.                
 Class methods are a great way to allow the user to modify the object data without having to handle it
 
 The syntax for a class with one attribute name and one method say_hello that print: hello name is the following:
@@ -70,23 +70,23 @@ obj.say_hello() # It will print: Hello Sylvaus
 
 You may be wondering why an underscore was added in of the name for the attribute.
 The underscore is simply a way to say to your fellow programmers that they should NOT access this attribute 
-directly, i.e, `obj._name` should be avoided. 
-An attribute starting with a letter is called a public attribute and can be accessed by everyone
-An attribute starting with an underscore is called a protected attribute and should be accessed only by the class
-An attribute starting with two underscores is called a private attribute and can "only" be accessed by the class
+directly, i.e, `obj._name` should be avoided.                        
+An attribute starting with a letter is called a public attribute and can be accessed by everyone               
+An attribute starting with an underscore is called a protected attribute and should be accessed only by the class                
+An attribute starting with two underscores is called a private attribute and can "only" be accessed by the class                          
 
 CAREFUL: You may be tempted to make most of your attributes private but there is not much advantages of doing so,
-it makes prototyping slower and involves something called name mangling 
+it makes prototyping slower and involves something called name mangling                
 It is recommended to mostly use public and protected attributes and only use private attributes if your really need no one to modify your attribute
 
 
-A Complete example of a useful usage of a class would a monster in a video game
-A monster data would be:
+A Complete example of a useful usage of a class would a monster in a video game                        
+A monster data would be:                 
  * attack power (atk)
  * defense (df)
  * health point (hp)
  * max health point (max_hp)
-A monster methods would be:
+A monster methods would be:                    
  * attack(other) attack other creature
  * defend(attack_force) receive an attack from another creature
  * rest() restore 1/5 of max hp
