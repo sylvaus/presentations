@@ -4,9 +4,10 @@ Write a code that asks the operator for its name and throws an exception if the 
 
 """
 
-
 def exercise1():
-    pass
+    name = input("what is your name")
+    if len(name) > 20:
+        raise Exception("too long")
 
 
 exercise1()
@@ -22,6 +23,12 @@ the user if the age given was correct or not
 
 
 def exercise2():
-    pass
+    age = input("what is your name")
+    try:
+        age = int(age)
+    except ValueError:
+        print("Invalid Format")
+    else:
+        print("Whoa, you're", age)
 
 exercise2()

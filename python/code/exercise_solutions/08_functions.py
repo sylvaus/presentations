@@ -11,12 +11,16 @@ Optional 1: Have a look at the map function and try to use to apply your functio
 
 
 def func(string):
-    pass
+    if string < 10:
+        return string
+    else:
+        return "too long to display"
 
 
 def exercise1():
     str_list = ["bonjour", "hello", "saluti", "comment ca va", "how are you doing", "come stai"]
-    pass
+    for element in str_list:
+        print(element)
 
 
 exercise1()
