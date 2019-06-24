@@ -38,7 +38,7 @@ except MyException3 as e:
     # code to handle exception
 ```
 
-An interesting construct is the try-catch-else which canbe useful if code should ne executed
+An interesting construct is the try-catch-else which can be useful if code should ne executed
 only if no exception was thrown
 ```python
 try:
