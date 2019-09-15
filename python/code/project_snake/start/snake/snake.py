@@ -1,6 +1,10 @@
 from typing import Tuple
 
 import pygame
+from pygame.sprite import spritecollide
+from pygame.time import Clock
+
+BLACK = (0, 0, 0)
 
 pygame.init()
 
@@ -10,11 +14,11 @@ def create_screen(size: Tuple[int, int] = (640, 480)):
 
 
 class Block(pygame.sprite.Sprite):
-    def __init__(self, size: Tuple[int, int], center: Tuple[int, int], *groups):
+    def __init__(self, size: Tuple[int, int], center: Tuple[int, int], color=(255, 255, 255), *groups):
         super().__init__(*groups)
 
         self.image = pygame.Surface(size)
-        self.image.fill((255, 255, 255))
+        self.image.fill(color)
         self.rect = self.image.get_rect()
         self.rect.center = center
 
@@ -28,6 +32,9 @@ class Block(pygame.sprite.Sprite):
 
     def move(self, delta: Tuple[int, int]):
         self.rect.center = (self.rect.center[0] + delta[0], self.rect.center[1] + delta[1])
+
+    def update(self, *args):
+        pass
 
 
 def handle_inputs(block):
@@ -47,7 +54,7 @@ def handle_inputs(block):
 
 
 def main():
-    # Pygame needs to be initialized befor anything
+    # Pygame needs to be initialized before anything
     size = (640, 480)
     fps = 60
     block_size = (20, 20)
@@ -55,11 +62,14 @@ def main():
     pygame.key.set_repeat(100, 100)
 
     screen = create_screen(size)
-    clock = pygame.time.Clock()
+    clock = Clock()
 
     block = Block(block_size, (100, 100))
+    apple = Block(block_size, (200, 200), color=(255, 0, 0))
     sprite_group = pygame.sprite.Group()
     sprite_group.add(block)
+    apple_group = pygame.sprite.Group()
+    apple_group.add(apple)
     while True:
         handle_inputs(block)
 
@@ -67,8 +77,13 @@ def main():
         sprite_group.update()
 
         # Draw
-        screen.fill((0, 0, 0))
+        screen.fill(BLACK)
         sprite_group.draw(screen)
+        apple_group.draw(screen)
+
+        collision = spritecollide(block, apple_group, dokill=True)
+        if collision:
+            print("Should increase the score")
         pygame.display.flip()
         clock.tick(fps)
 
