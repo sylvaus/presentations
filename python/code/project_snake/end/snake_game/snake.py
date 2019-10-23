@@ -1,5 +1,6 @@
 from enum import Enum, auto
 from queue import Queue
+from time import sleep
 from typing import Tuple, Optional
 
 import pygame
@@ -58,84 +59,113 @@ class Block(pygame.sprite.Sprite):
     def move(self, delta: Vector2):
         self.rect.center = (self.rect.center[0] + delta.x, self.rect.center[1] + delta.y)
 
+    def draw(self, screen: Surface):
+        screen.blit(self.image, self.rect)
+
     def update(self, *args):
         pass
 
 
+class Apple(Block):
+    COLOR = (255, 0, 0)  # red
+    APPLE_LENGTH = 10
+    APPLE_SIZE = (APPLE_LENGTH, APPLE_LENGTH)
+
+    def __init__(self, center: Vector2, *groups):
+        Block.__init__(self, self.APPLE_SIZE, center, self.COLOR, *groups)
+
+
 class Snake:
     BLOCK_LENGTH = 16
-    BLOCK_SIZE = (BLOCK_LENGTH, BLOCK_LENGTH)
+    BLOCK_SIZE = (BLOCK_LENGTH - 1, BLOCK_LENGTH - 1)
 
     def __init__(self, start_position: Vector2, length: int, direction: Directions):
-        self.group = Group()
+        self.body = Group()
         self.queue = Queue()
         self.dir = direction
 
         for index in range(length):
             position = start_position + index * DIRECTION_VECTOR_MAP[direction] * self.BLOCK_LENGTH
-            block = Block(self.BLOCK_SIZE, position, (255, 255, 255), self.group)
-            self.queue.put(block)
-            if index == (length - 1):
+            # Handle head differently
+            if index != (length - 1):
+                block = Block(self.BLOCK_SIZE, position, (255, 255, 255), self.body)
+                self.queue.put(block)
+            else:
+                block = Block(self.BLOCK_SIZE, position, (255, 255, 255))
+                self.queue.put(block)
                 self.head = block
 
     def draw(self, screen: Surface):
-        self.group.draw(screen)
+        self.body.draw(screen)
+        self.head.draw(screen)
 
     def move(self, direction: Optional[Directions], keep_tail):
-        if direction == OPPOSITE_DIRECTION_MAP[self.dir] or direction == None:
+        # Prevent running in opposite direction and no direction.
+        if direction == OPPOSITE_DIRECTION_MAP[self.dir] or direction is None:
             direction = self.dir
-
+        # Updating the direction
         self.dir = direction
-        block = self.queue.get()
-        self.group.remove(block)
+
+        if not keep_tail:
+            # Remove the tail block
+            block = self.queue.get()
+            self.body.remove(block)
+        # Add old head to the group
+        self.body.add(self.head)
+        # Creating head block.
         position = self.head.center + DIRECTION_VECTOR_MAP[direction] * self.BLOCK_LENGTH
-        block = Block(self.BLOCK_SIZE, position, (255, 255, 255), self.group)
+        block = Block(self.BLOCK_SIZE, position, (255, 255, 255))
+        # Adding head block to snake
         self.queue.put(block)
         self.head = block
 
 
-def get_direction(block):
+def get_direction():
+    direction = None
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit(0)
         elif event.type == pygame.KEYDOWN:
-            pressed_keys = pygame.key.get_pressed()
-            if pressed_keys[pygame.K_UP]:
-                block.move(DIRECTION_VECTOR_MAP[Directions.TOP] * 4)
-            if pressed_keys[pygame.K_DOWN]:
-                block.move(DIRECTION_VECTOR_MAP[Directions.BOTTOM] * 4)
-            if pressed_keys[pygame.K_LEFT]:
-                block.move(DIRECTION_VECTOR_MAP[Directions.LEFT] * 4)
-            if pressed_keys[pygame.K_RIGHT]:
-                block.move(DIRECTION_VECTOR_MAP[Directions.RIGHT] * 4)
+            if event.key == pygame.K_UP:
+                direction = Directions.TOP
+            if event.key == pygame.K_DOWN:
+                direction = Directions.BOTTOM
+            if event.key == pygame.K_LEFT:
+                direction = Directions.LEFT
+            if event.key == pygame.K_RIGHT:
+                direction = Directions.RIGHT
+    return direction
 
 
 def main():
     size = (640, 480)
     fps = 5
-
+    direction = None
     screen = create_screen(size)
     clock = Clock()
-    counter = 0
     score = 0
-    snake = Snake(Vector2(300, 300), 6, Directions.RIGHT)
+    snake = Snake(Vector2(300, 300), 12, Directions.RIGHT)
+    apple = Apple(Vector2(10, 10))
     while True:
-        # TODO: Implement the get direction to get the user input and move the snake accordingly
-        # get_direction()
+        # TODO: Implement the get direction to get the user input and move the snake_game accordingly
+
+        direction = get_direction() or direction
 
         # TODO: Optional Add the code to display the score
         # The score will increase every seconds
 
         # Update
-        counter += 1
-        keep_tail = not bool(counter % 3)
-        snake.move(Directions.TOP, keep_tail)
+        snake.move(direction, False)
+        print(spritecollide(snake.head, snake.body, dokill=False))
+        direction = None
 
         # Draw
         screen.fill(BLACK)
         snake.draw(screen)
+        apple.draw(screen)
 
         pygame.display.flip()
+
         clock.tick(fps)
 
 
