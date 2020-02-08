@@ -1,6 +1,8 @@
 List and tuple are simples structure and are used everywhere in python
 
 A list as its name indicates is a list of elements.
+Lists are mutable in python, you can add/remove elements from them 
+Moreover, lists can be heterogeneous, i.e, they can contain elements with different types
 There are various ways to create a list:
 Empty list
 ```python
@@ -18,14 +20,14 @@ var = my_list[2] # The list is zero indexed and thus 64 would be returned
 var = my_list[-1] # This return the last element
 ```
 
-You need to be careful while accessing an element with an indexing an exception will occur if the list 
+You need to be careful while accessing an element with an index as an exception will occur if the list 
 is shorter than the index asked.                           
 The length of a list can be obtained using the len keyword
 ```python
 length = len(my_list)
 ```
 
-Elements can be added or remove from the list       
+Adding/removing elements from the list       
 Add one element
 ```python
 my_list.append("new element")
@@ -53,4 +55,7 @@ if start_index is not given, its value will be 0, e.g.,```python  my_list[:end:s
 if end_index is not given, its value will be len(my_str), e.g.,```python  my_list[start::step] or my_list[start:] ```                   
 if step is not given, its value will be 1, e.g.,```python  my_list[start:end] ```                   
 
-A tuple has the same property as a list except for that a tuple cannot be modified: no value can be added or removed                       
+A tuple has the same properties as a list except for that a tuple cannot be modified: no value can be added or removed 
+after creation
+The main advantage of tuples is the fact their immutability make them usable as index in dictionary (see [dictionary](07_dictionnary.md))   
+                     

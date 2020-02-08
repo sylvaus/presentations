@@ -3,11 +3,13 @@ Syntax:
 ```python
 if condition:
     code
-elif condition:
+elif condition: # combination of else and if
     code
 else:
     condition
 ```
+
+You always need `if` but `elif` and `else` 
 
 Example:
 ```python

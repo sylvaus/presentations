@@ -10,13 +10,20 @@ while condition:
     code
 ```
 
-You can also break from a loop using the break keyword
-
 Examples
 ```Python
 my_list = [10, 45, 78]
 for elt in my_list:
     print(elt)
+# will print 
+# 10 
+# 45 
+# 78
+
+index = 0
+while index < len(my_list):
+    print(my_list[index])
+    index += 1
 # will print 
 # 10 
 # 45 
@@ -31,6 +38,7 @@ for index, elt in enumerate(my_list):
 # 1 45 
 # 2 78    
 
+# Interrupting a for/while loop can be done by using the break keyword
 for elt in my_list:
     if elt == 45:
         break
@@ -40,10 +48,9 @@ for elt in my_list:
 index = 0
 while index < len(my_list):
     print(my_list[index])
+    index += 1
 # will print 
-# 10 
-# 45 
-# 78
-
+# 0 10 
+```
 
 
